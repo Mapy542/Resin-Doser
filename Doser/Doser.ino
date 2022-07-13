@@ -48,12 +48,15 @@ void loop() {
       state = 2;
       timer = 0;
       doses_count = 0;
+      digitalWrite(enable, HIGH);
     }
     if (digitalRead(forward)) {
       state = 1;
+      digitalWrite(enable, HIGH);
     }
     if (digitalRead(backward)) {
       state = 1;
+      digitalWrite(enable, HIGH);
     }
   }
   else if (state = 1) { //manual
@@ -62,6 +65,7 @@ void loop() {
     digitalWrite(off, LOW);
     if (digitalRead(estop)) {
       state = 0;
+      digitalWrite(enable, LOW);
       return;
     }
     if (digitalRead(forward)) {
@@ -89,6 +93,7 @@ void loop() {
     digitalWrite(off, HIGH);
     if (digitalRead(estop)) {
       state = 0;
+      digitalWrite(enable, LOW);
       return;
     }
     if (timer <= off_time) {
@@ -105,10 +110,7 @@ void loop() {
     digitalWrite(manual, LOW);
     digitalWrite(dosing, HIGH);
     digitalWrite(off, LOW);
-    if (digitalRead(estop)) {
-      state = 0;
-      return;
-    }
+
     if (timer <= dose_time) {
       timer++;
       digitalWrite(dir, default_dir);
@@ -118,6 +120,12 @@ void loop() {
         digitalWrite(mstep, LOW);
         delay(10);
         pulse++;
+
+        if (digitalRead(estop)) {
+          state = 0;
+          digitalWrite(enable, LOW);
+          return;
+        }
       } while (pulse < 100);
     }
     else {

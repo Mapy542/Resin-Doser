@@ -1,8 +1,10 @@
+///---------------------- USER INTPUTS
 int Total_Print_Volume = 401; //mililiters
 long Total_Print_Time = 15000; //seconds
 int Number_Of_Doses = 10; //times pump is turned on
 float Dose_Flow_Rate = 0.5; //ml/s
 bool default_dir = true; //flip what direction "forward" is
+//------------------------
 
 float dose_volume = Total_Print_Volume / Number_Of_Doses;
 float dose_time = dose_volume / Dose_Flow_Rate;
@@ -37,13 +39,17 @@ void setup()
   pinMode(mstep, OUTPUT);
   pinMode(dir, OUTPUT);
   pinMode(enable, OUTPUT);
+  state = 0;
+  
 }
 
 void loop() {
-  if (state = 0) { //off
+  if (state ==0) { //off
     digitalWrite(manual, LOW);
     digitalWrite(dosing, LOW);
     digitalWrite(off, HIGH);
+    digitalWrite(enable, HIGH);
+    
     if (digitalRead(start)) {
       state = 2;
       timer = 0;
@@ -59,10 +65,12 @@ void loop() {
       digitalWrite(enable, HIGH);
     }
   }
-  else if (state = 1) { //manual
+  else if (state == 1) { //manual
     digitalWrite(manual, HIGH);
     digitalWrite(dosing, LOW);
     digitalWrite(off, LOW);
+    digitalWrite(enable, LOW);
+    
     if (digitalRead(estop)) {
       state = 0;
       digitalWrite(enable, LOW);
@@ -87,10 +95,12 @@ void loop() {
       } while (digitalRead(backward));
     }
   }
-  else if (state = 2) { //dosing off time
+  else if (state == 2) { //dosing off time
     digitalWrite(manual, LOW);
     digitalWrite(dosing, HIGH);
     digitalWrite(off, HIGH);
+    digitalWrite(enable, HIGH);
+    
     if (digitalRead(estop)) {
       state = 0;
       digitalWrite(enable, LOW);
@@ -106,11 +116,12 @@ void loop() {
     }
 
   }
-  if (state = 3) { //dosing
+  if (state == 3) { //dosing
     digitalWrite(manual, LOW);
     digitalWrite(dosing, HIGH);
     digitalWrite(off, LOW);
-
+    digitalWrite(enable, LOW);
+    
     if (timer <= dose_time) {
       timer++;
       digitalWrite(dir, default_dir);

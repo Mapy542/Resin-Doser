@@ -1,12 +1,15 @@
-int Total_Print_Volume = 236; //mililiters
-long Total_Print_Time = 240; //seconds
-int Number_Of_Doses = 1; //times pump is turned on
-float Dose_Flow_Rate = 1; //ml/s
+//USER-----
+int Total_Print_Volume = 1; //mililiters
+long Total_Print_Time = 10; //seconds
+int Number_Of_Doses = 2; //times pump is turned on
+float Dose_Flow_Rate = .45; //ml/s
 bool default_dir = true; //flip what direction "forward" is
+//----------
 
-float dose_volume = Total_Print_Volume / Number_Of_Doses;
-float dose_time = dose_volume / Dose_Flow_Rate;
-float off_time = Total_Print_Time - (Number_Of_Doses*dose_time);
+
+float dose_volume = (float)Total_Print_Volume / Number_Of_Doses;
+long dose_time = floor(dose_volume / Dose_Flow_Rate);
+long off_time = floor(((float)Total_Print_Time - ((float)Number_Of_Doses*dose_time)) / Number_Of_Doses);
 
 long timer = 0;
 long pulse = 0;
@@ -41,7 +44,7 @@ void setup()
 }
 
 void loop() {
-  Serial.println(state);
+  Serial.println(off_time);
   if (state == 0) { //off
     digitalWrite(manual, LOW);
     digitalWrite(dosing, LOW);
@@ -87,6 +90,7 @@ void loop() {
       } while (!digitalRead(backward));
     }
   }
+
   else if (state == 2) { //dosing off time
     digitalWrite(manual, LOW);
     digitalWrite(dosing, HIGH);
@@ -96,7 +100,7 @@ void loop() {
       state = 0;
       return;
     }
-    if (timer <= off_time) {
+    if (timer < off_time) {
       timer++;
       delay(1000);
     }
@@ -111,21 +115,21 @@ void loop() {
     digitalWrite(dosing, HIGH);
     digitalWrite(off, LOW);
     digitalWrite(enable, LOW);
-    if (timer <= dose_time) {
+    digitalWrite(dir, default_dir);
+    if (timer < dose_time) {
       timer++;
-      digitalWrite(dir, default_dir);
       do { //based on 10milisec pules on mstepper
         digitalWrite(mstep, HIGH);
-        delay(10);
+        delay(1);
         digitalWrite(mstep, LOW);
-        delay(10);
+        delay(1);
         pulse++;
 
         if (!digitalRead(estop)) {
           state = 0;
           return;
         }
-      } while (pulse < 100);
+      } while (pulse < 1000);
     }
     else {
       state = 2;
@@ -134,6 +138,8 @@ void loop() {
       if (doses_count == Number_Of_Doses) {
         state = 0;
       }
+      pulse = 0;
+
     }
   }
   delay(100);

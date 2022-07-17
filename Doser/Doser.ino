@@ -1,7 +1,7 @@
 //USER-----
-int Total_Print_Volume = 1; //mililiters
-long Total_Print_Time = 10; //seconds
-int Number_Of_Doses = 2; //times pump is turned on
+int Total_Print_Volume = 384; //mililiters
+long Total_Print_Time = 31740; //seconds
+int Number_Of_Doses = 10; //times pump is turned on
 float Dose_Flow_Rate = .45; //ml/s
 bool default_dir = true; //flip what direction "forward" is
 //----------
@@ -44,7 +44,7 @@ void setup()
 }
 
 void loop() {
-  Serial.println(off_time);
+  Serial.println(dose_time);
   if (state == 0) { //off
     digitalWrite(manual, LOW);
     digitalWrite(dosing, LOW);
@@ -61,6 +61,7 @@ void loop() {
     if (!digitalRead(backward)) {
       state = 1;
     }
+    delay(100);
   }
   else if (state == 1) { //manual
     digitalWrite(manual, HIGH);
@@ -111,7 +112,7 @@ void loop() {
 
   }
   if (state == 3) { //dosing
-    digitalWrite(manual, LOW);
+    digitalWrite(manual, HIGH);
     digitalWrite(dosing, HIGH);
     digitalWrite(off, LOW);
     digitalWrite(enable, LOW);
@@ -129,7 +130,8 @@ void loop() {
           state = 0;
           return;
         }
-      } while (pulse < 1000);
+      } while (pulse < 500);
+      pulse = 0;
     }
     else {
       state = 2;
@@ -138,9 +140,8 @@ void loop() {
       if (doses_count == Number_Of_Doses) {
         state = 0;
       }
-      pulse = 0;
+      
 
     }
   }
-  delay(100);
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="208.004mm"
+   height="152.604mm"
+   viewBox="-62.400002 -63 208.00401 152.604"
+   version="1.1"
+   id="svg39"
+   sodipodi:docname="Resin Doser (1).svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs43" />
+  <sodipodi:namedview
+     id="namedview41"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.63308309"
+     inkscape:cx="381.46652"
+     inkscape:cy="289.06158"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg39" />
+  <title
+     id="title33">svgOutput</title>
+  <desc
+     id="desc35">made with tinkercad</desc>
+  <path
+     d="m -36.898001,-62.898 v 4 h 3.399998 33.20000147 10.79999953 3.4 v -4 h 12.7 v 4 h 8.699999 v 8.699997 h 3.999999 v 12.700004 H 35.301997 V 28.102 v 36 h 3.999999 v 12.699999 h -3.999999 v 8.7 h -8.699999 v 4 h -12.7 v -4 h -3.4 -10.79999953 -33.20000147 -3.399998 v 4 h -12.700001 v -4 h -8.7 v -8.7 h -4 V 64.102 h 4 v -36 -65.599999 h -4 v -12.700004 h 4 V -58.898 h 8.7 v -4 h 12.700001 M 145.502,-37.497999 h -4 V 28.102 v 36 h 4 v 12.699999 h -4 v 8.7 h -8.7 v 4 h -12.7 v -4 H 69.301996 v 4 H 56.601999 v -4 h -8.700001 v -8.7 h -4 V 64.102 h 4 v -36 -65.599999 h -4 v -12.700004 h 4 V -58.898 h 8.700001 v -4 h 12.699997 v 4 H 120.102 v -4 h 12.7 v 4 h 8.7 v 8.699997 h 4 v 12.700004 m -179.000003,28.8 V 28.102 v 7.2 H -0.29800153 10.501998 v -7.2 -36.799999 H -0.29800153 Z"
+     fill="none"
+     stroke="rgb(255,0,0)"
+     stroke-width="0.001mm"
+     id="path37"
+     style="stroke:#ff0000;stroke-width:0.204;stroke-dasharray:none" />
+</svg>

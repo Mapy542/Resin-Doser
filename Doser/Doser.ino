@@ -1,6 +1,6 @@
 //USER-----
-int Total_Print_Volume = 384; //mililiters
-long Total_Print_Time = 31740; //seconds
+int Total_Print_Volume = 427; //mililiters
+long Total_Print_Time = 34440; //seconds
 int Number_Of_Doses = 10; //times pump is turned on
 float Dose_Flow_Rate = .45; //ml/s
 bool default_dir = true; //flip what direction "forward" is

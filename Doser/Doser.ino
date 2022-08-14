@@ -8,8 +8,8 @@ bool default_dir = true; //flip what direction "forward" is
 
 
 float dose_volume = (float)Total_Print_Volume / Number_Of_Doses;
-long dose_time = floor(dose_volume / Dose_Flow_Rate);
-long off_time = floor(((float)Total_Print_Time - ((float)Number_Of_Doses*dose_time)) / Number_Of_Doses);
+long dose_time = round(dose_volume / Dose_Flow_Rate);
+long off_time = round(((float)Total_Print_Time - ((float)Number_Of_Doses*dose_time)) / Number_Of_Doses);
 
 long timer = 0;
 long pulse = 0;

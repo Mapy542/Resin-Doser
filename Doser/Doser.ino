@@ -1,7 +1,7 @@
 //USER-----
 int Total_Print_Volume = 427; //mililiters
 long Total_Print_Time = 34440; //seconds
-int Number_Of_Doses = 10; //times pump is turned on
+int Number_Of_Doses = 30; //times pump is turned on
 float Dose_Flow_Rate = .45; //ml/s
 bool default_dir = true; //flip what direction "forward" is
 //----------
@@ -41,10 +41,12 @@ void setup()
   pinMode(dir, OUTPUT);
   pinMode(enable, OUTPUT);
   Serial.begin(9600);
+  delay(1000);
+  Serial.println(dose_time);
+  Serial.println(off_time);
 }
 
 void loop() {
-  Serial.println(dose_time);
   if (state == 0) { //off
     digitalWrite(manual, LOW);
     digitalWrite(dosing, LOW);
@@ -103,6 +105,8 @@ void loop() {
     }
     if (timer < off_time) {
       timer++;
+      Serial.print("OFF time remaining: ");
+      Serial.println(off_time - timer);
       delay(1000);
     }
     else {
@@ -119,6 +123,8 @@ void loop() {
     digitalWrite(dir, default_dir);
     if (timer < dose_time) {
       timer++;
+      Serial.print("DOSE time remaining: ");
+      Serial.println(dose_time - timer);
       do { //based on 10milisec pules on mstepper
         digitalWrite(mstep, HIGH);
         delay(1);

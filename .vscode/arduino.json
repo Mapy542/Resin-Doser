@@ -2,5 +2,6 @@
     "port": "COM4",
     "board": "arduino:avr:nano",
     "programmer": "arduino:avrispmkii",
-    "configuration": "cpu=atmega328old"
+    "configuration": "cpu=atmega328old",
+    "sketch": "Doser\\Doser.ino"
 }

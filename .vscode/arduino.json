@@ -1,5 +1,6 @@
 {
-    "port": "/dev/ttyS29",
-    "board": "arduino:avr:uno",
-    "programmer": "arduino:avrispmkii"
+    "port": "COM4",
+    "board": "arduino:avr:nano",
+    "programmer": "arduino:avrispmkii",
+    "configuration": "cpu=atmega328old"
 }
